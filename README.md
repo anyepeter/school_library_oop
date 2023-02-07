@@ -9,6 +9,8 @@
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
+  - [Install](#Install)
+  - [Usage](#Usage)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -67,9 +69,19 @@ cd [your-folder] https://github.com/anyepeter/school_library_oop.git
 ```
 cd my-folder
 ```sh
-  
   cd school_library_oop
 ```
+### Install
+Install the project using the following 
+```sh
+bundler install
+```
+### Usage 
+To run the project, execute the following command:
+```sh
+ruby person.rb
+```
+
 ### Test
 ```sh
   
@@ -102,7 +114,7 @@ cd my-folder
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/anyepeter/enumerable/issues).
+Feel free to check the [issues page](https://github.com/anyepeter/school_library_oop/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,24 +131,16 @@ If you like this project please give it a star
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-- Project from Microverse Ruby, Databases & Interviewing Module.
+- The original design ideal from Microverse💕.
+- Project from Microverse Ruby / Database and Interviewing module.
+- Thanks to the Microverse team for the great curriculum.
+- Thanks to the Code Reviewer(s) for the insightful feedbacks.
 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FAQ (optional) -->
-
-## ❓ FAQ <a name="faq"></a>
-
-
-- **[Can I Fork it and Imporove on it]**
-
-  - [Yes, You can, feel free]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
 
 
 ## ❓ FAQ <a name="faq"></a>
@@ -153,6 +157,6 @@ If you like this project please give it a star
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/anyepeter/enumerable/blob/features/LICENSE) licensed.
+This project is [MIT](https://github.com/anyepeter/school_library_oop/blob/add_classes/LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
