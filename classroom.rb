@@ -10,6 +10,6 @@ class Classroom
     #add student manage the relationship between the classroom and student 
     def add_student(student)
         @student.push(student)
-        student.student_name = self
+        student.manage_classroom = self
     end
 end
