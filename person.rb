@@ -10,7 +10,6 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
-    
   end
   # getter and setter in one
   attr_accessor :name, :age
@@ -31,10 +30,6 @@ class Person < Nameable
     @name
   end
 end
-
-
-
-
 
 person = Person.new(22, 'maximilianus')
 puts person.correct_name
