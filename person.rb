@@ -35,7 +35,6 @@ class Person < Nameable
   def add_rental(rental)
     @rentals << rental
   end
-
 end
 
 person = Person.new(22, 'maximilianus')
