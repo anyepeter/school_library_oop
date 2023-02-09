@@ -1,6 +1,7 @@
 require_relative 'nameable'
 require_relative 'capitalize_decorator'
 require_relative 'trimmer_decorator'
+require_relative 'rentals'
 
 # Person class provide the defuslt implementation of the correct_name method
 class Person < Nameable
@@ -10,12 +11,13 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rentals = []
   end
   # getter and setter in one
   attr_accessor :name, :age
 
   # getter
-  attr_reader :id
+  attr_reader :id, :rentals
 
   def of_age?
     @age >= 18
@@ -29,6 +31,11 @@ class Person < Nameable
   def correct_name
     @name
   end
+
+  def add_rental(rental)
+    @rentals << rental
+  end
+
 end
 
 person = Person.new(22, 'maximilianus')
