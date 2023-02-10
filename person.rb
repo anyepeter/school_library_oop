@@ -14,7 +14,7 @@ class Person < Nameable
     @rentals = []
   end
   # getter and setter in one
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
 
   # getter
   attr_reader :id, :rentals
@@ -32,7 +32,7 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(rental)
-    @rentals << rental
+  def add_rental(date, book)
+    Rental.new(date, book, self)
   end
 end
