@@ -93,5 +93,15 @@ def create_rental
     puts "Rental created successully"
 end
 
-
+def list_rentals
+    puts "ID of person:"
+    pr_id = gets.chomp.to_i
+    @rentals do |rent|
+        if rent.person.id == pr.id
+            puts "Date:#{rent.date}, Book #{rent.book.title} by #{rent.book.author} borrowed by #{rent.person.name}"
+        else 
+            puts "Rentals:"
+        end
+    end
+end
 end
