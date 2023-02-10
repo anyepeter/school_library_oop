@@ -35,11 +35,11 @@ def create_person
         when 'Y','y'
         student.Student.new(age, name, true)
         @people.push(student)
-        puts "Person created successful"
+        puts "Person created successfully"
         when 'N','n' 
         student.Student.new(age, name, false)
         @people.push(student)
-        puts "Person created successful"
+        puts "Person created successfully"
         else 
             puts "invalid"    
         end
@@ -52,9 +52,20 @@ def create_person
         specialization = get.chomp
         teacher = Teacher.new(specialization, age, name)
         @people.push(teacher)
-        puts "Person created successful"
+        puts "Person created successfully"
     else
         puts "Invalid"
     end
+end
 
+def create_book
+    print "Title:"
+    title = get.chomp
+    print "Author:"
+    author = get.chomp
+
+    book = Book.new(title, author)
+    @books.push(book)
+    puts "book created successfully"
+end
 end
