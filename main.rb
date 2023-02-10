@@ -1,5 +1,7 @@
 require_relative 'app'
+def others(option); end
 
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
 def main
   app = App.new
@@ -7,7 +9,6 @@ def main
   people = []
   rentals = []
   puts 'Welcome to School Library App!'
-  puts
   option = nil
   while option != '7'
     puts 'Please choose an option by entering a number:'
@@ -21,10 +22,7 @@ def main
     option = gets.chomp
     case option
     when '1'
-      if books.empty?
-        puts 'No books yet'
-        next
-      end
+      puts 'No books yet' if books.empty?
       app.list_all_books(books)
     when '2'
       if people.empty?
@@ -45,5 +43,7 @@ def main
   end
   puts 'Thank you for using this app!'
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
 main
