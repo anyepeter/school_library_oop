@@ -9,6 +9,7 @@ class App
     @books = []
     @people = []
     @rentals = []
+    @classroom = Classroom.new('Website Development')
   end
 
   def list_all_books
@@ -47,7 +48,7 @@ class App
   end
 
   def create_student
-    student = Student.new(age, name, parent_permission: permission)
+    student = Student.new(classroom,age, name, parent_permission: permission)
     @people.push(student)
     puts 'Person successfully created'
   end
