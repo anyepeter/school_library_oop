@@ -11,15 +11,16 @@ class App
     @rentals = []
   end
 
-  def list_all_books(_books)
+  def list_all_books(books)
     @books.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
       puts ' '
     end
   end
 
-  def list_all_people(_people)
+  def list_all_people
     @people.each do |person|
+      
       print "[#{person.class}] name: #{person.name}, ID: #{person.id}, #{person.age}"
       puts ' '
     end
@@ -108,4 +109,29 @@ class App
       end
     end
   end
+
+  def functions(option)
+    case option
+    when '1'
+       if @books.empty?
+        puts 'No books yet'
+     list_all_books
+       end
+    when '2'
+      if @people.empty?
+        puts 'No people yet'
+        return
+      end
+      list_all_people
+    when '3'
+      create_person
+    when '4'
+      create_book
+    when '5'
+     create_rental(@books, @people)
+    when '6'
+      list_rentals
+    end
+    puts
+  end 
 end
