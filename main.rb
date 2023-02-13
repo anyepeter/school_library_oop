@@ -1,8 +1,6 @@
 require_relative 'app'
 
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
-
-class Main 
+class Main
   def main
     app = App.new
     puts 'Welcome to School Library App!'
@@ -22,8 +20,6 @@ class Main
     puts 'Thank you for using this app!'
   end
 end
-
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
 application = Main.new
 application.main
