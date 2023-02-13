@@ -9,7 +9,7 @@ class App
     @books = []
     @people = []
     @rentals = []
-    @classroom = Classroom.new('Website Development')
+    @classroom = []
   end
 
   def list_all_books
@@ -36,8 +36,13 @@ class App
     gets.chomp
   end
 
+  def classroom
+    puts 'Enter the classroom for the student:'
+    gets.chomp
+  end
+
   def permission
-    print 'Has parent permission? [Y/N]:'
+    puts 'Has parent permission? [Y/N]:'
     permit = gets.chomp
     case permit
     when 'Y', 'y'
@@ -48,7 +53,7 @@ class App
   end
 
   def create_student
-    student = Student.new(classroom,age, name, parent_permission: permission)
+    student = Student.new(classroom, age, name, parent_permission: permission)
     @people.push(student)
     puts 'Person successfully created'
   end
