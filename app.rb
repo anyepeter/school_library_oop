@@ -25,77 +25,102 @@ class App
     end
   end
 
-  def create_stedent
+  def age
     print 'Age:'
-    age = gets.chomp
-    print 'name:'
-    name = gets.chomp
+    gets.chomp
+  end
+
+  def name
+    print 'Name:'
+    gets.chomp
+  end
+
+  def permission
     print 'Has parent permission? [Y/N]:'
     permit = gets.chomp
     case permit
     when 'Y', 'y'
-      permission = true
+      true
     when 'N', 'n'
-      permission = false
+      false
     end
+  end
+
+  def create_student
     student = Student.new(age, name, parent_permission: permission)
     @people.push(student)
     puts 'Person successfully created'
   end
 
+  def specialization
+    print 'Specialization:'
+    gets.chomp
+  end
+
   def create_teacher
-    print 'Age:'
-    age = gets.chomp
-    print 'name:'
-    name = gets.chomp
-    print 'specialization:'
-    specialization = gets.chomp
     teacher = Teacher.new(specialization, age, name)
     @people.push(teacher)
     puts 'Person created successfully'
   end
 
+  def person_type
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]'
+    gets.chomp
+  end
+
   def create_person
-    print 'Do you want to create a student (1) or a teacher(2)? [Input the number]'
-    response = gets.chomp
+    response = person_type
     case response
     when '1'
-      create_stedent
+      create_student
     when '2'
       create_teacher
     end
   end
 
-  def create_book
+  def title
     print 'Title:'
-    title = gets.chomp
-    print 'Author:'
-    author = gets.chomp
+    gets.chomp
+  end
 
+  def author
+    print 'Author:'
+    gets.chomp
+  end
+
+  def create_book
     book = Book.new(title, author)
     @books.push(book)
     puts 'book created successfully'
   end
 
-  def create_rental(_books, _people)
+  def book_index
     puts 'Select a book from the following list of numbers'
     @books.each_with_index do |book, index|
       puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}: "
     end
-    bk_index = gets.chomp.to_i
+    gets.chomp.to_i
+  end
 
+  def person_index
     puts 'Select a person from the following list of numbers'
     @people.each_with_index do |person, index|
       puts "#{index}) [#{person.class}] Name: #{person.name},  ID: #{person.id}, Age: #{person.age}: "
     end
-    pr_index = gets.chomp.to_i
+    gets.chomp.to_i
+  end
 
+  def rental_date
     print 'Date:'
-    get_date = gets.chomp
+    gets.chomp
+  end
 
+  def create_rental(_books, _people)
+    bk_index = book_index
+    pr_index = person_index
+    get_date = rental_date
     rental = Rentals.new(get_date, @people[pr_index], @books[bk_index])
     @rentals.push(rental)
-
     puts 'Rental created successully'
   end
 
