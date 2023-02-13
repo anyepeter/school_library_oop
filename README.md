@@ -98,6 +98,12 @@ ruby person.rb
 - Twitter: [@apcode](https://twitter.com/apcode)
 - LinkedIn: [peterchendi](https://www.linkedin.com/in/peter-chendi/)
 
+👤 **Robert O. Alabi**
+
+- GitHub: [@anyepeter](https://github.com/Alabi12)
+- Twitter: [@apcode](https://twitter.com/wolo_robert)
+- LinkedIn: [peterchendi](https://www.linkedin.com/in/robert-alabi/)
+
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
