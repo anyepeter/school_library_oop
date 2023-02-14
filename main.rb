@@ -16,9 +16,13 @@ class Main
       puts '7 - Exit'
       option = gets.chomp
       app.functions(option)
+    app.save_books
+    app.save_person
     end
     puts 'Thank you for using this app!'
   end
+
+ 
 end
 
 application = Main.new

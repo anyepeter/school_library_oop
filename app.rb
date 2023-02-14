@@ -3,6 +3,7 @@ require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'rentals'
+require 'json'
 
 class App
   def initialize
@@ -157,4 +158,21 @@ class App
     end
     puts
   end
+
+  def save_books
+    arr=[]
+    @books.each do |element|
+      arr.push(element.recieve_items)
+    end
+    File.write('./save_data/books.json', JSON.generate(arr))
+  end 
+
+  def save_person
+    arr = []
+    @people.each do |person|
+      arr.push(person.recieve_items)
+    end
+    File.write('./save_data/people.json', JSON.generate(arr))
+  end
+
 end

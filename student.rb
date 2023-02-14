@@ -16,4 +16,16 @@ class Student < Person
     @classroom = classroom
     classroom.student.push(self) unless classroom.student.include?(self)
   end
+
+  def recieve_items
+    {
+      class: 'student',
+        id: @id,
+        name: @name,
+        age: @age,
+        parent_permission: @parent_permission,
+        classroom: @classroom
+    }
+  end
+
 end
