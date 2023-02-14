@@ -14,4 +14,12 @@ class Rentals
     @book = book
     book.rentals << self
   end
+
+  def recieve_items
+    {
+      date: @date,
+      person: @person.name,
+      book: @book.title
+    }
+  end
 end

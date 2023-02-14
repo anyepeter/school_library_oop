@@ -7,7 +7,7 @@ require 'json'
 
 class App
   def initialize
-    @books = []
+    @books = load_books || [] 
     @people = []
     @rentals = []
     @classroom = []
@@ -175,4 +175,21 @@ class App
     File.write('./save_data/people.json', JSON.generate(arr))
   end
 
+  def save_rentals
+    arr = []
+    @rentals.each do |rental|
+      arr.push(rental.recieve_items)
+    end
+    File.write('./save_data/rentals.json', JSON.generate(arr))
+  end
+
+
+  def load_books  
+    JSON.parse(File.read('./save_data/books.json')).map do |books|
+      id = books['id']
+      title = books['title']
+      author = books['author']
+      Book.new(title, author)
+    end
+  end
 end
