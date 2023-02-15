@@ -9,4 +9,13 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def recieve_items
+    {
+      class: 'Teacher',
+      age: @age,
+      name: @name,
+      specialization: @specialization
+    }
+  end
 end

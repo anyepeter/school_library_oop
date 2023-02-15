@@ -3,6 +3,9 @@ require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'rentals'
+require 'json'
+
+# rubocop:disable Metrics/MethodLength, Metrics/ClassLength, Lint/NestedMethodDefinition
 
 class App
   def initialize
@@ -132,9 +135,9 @@ class App
 
   def list_rentals
     puts 'ID of person:'
-    pr_id = gets.chomp.to_i
+    id = gets.chomp.to_i
     @rentals.each do |rent|
-      if rent.person.id == pr_id
+      if rent.person&.id == id
         puts "Date:#{rent.date}, Book #{rent.book.title} by #{rent.book.author} borrowed by #{rent.person.name}"
       end
     end
@@ -157,4 +160,69 @@ class App
     end
     puts
   end
+
+  def save_books
+    arr = []
+    @books.each do |element|
+      arr.push(element.recieve_items)
+    end
+    File.write('./save_data/books.json', JSON.generate(arr))
+  end
+
+  def save_person
+    arr = []
+    @people.each do |person|
+      arr.push(person.recieve_items)
+    end
+    File.write('./save_data/people.json', JSON.generate(arr))
+  end
+
+  def save_rentals
+    arr = []
+    @rentals.each do |rental|
+      arr.push(rental.recieve_items)
+    end
+    File.write('./save_data/rentals.json', JSON.generate(arr))
+  end
+
+  def load_books
+    JSON.parse(File.read('./save_data/books.json')).map do |books|
+      title = books['title']
+      author = books['author']
+      book = Book.new(title, author)
+      @books.push(book)
+    end
+  end
+
+  def load_people
+    JSON.parse(File.read('./save_data/people.json')).map do |e|
+      people_class = e['class']
+      name = e['name']
+      age = e['age']
+      if people_class == 'student'
+        classroom = e['classroom']
+        parent_permission = e['parent_permission']
+        person = Student.new(classroom, parent_permission)
+      else
+        specialization = e['specialization']
+        person = Teacher.new(age, name, specialization)
+      end
+      @people.push(person)
+    end
+
+    def load_rentals
+      JSON.parse(File.read('./save_data/rentals.json')).map do |e|
+        date = e['date']
+        person_id = e['person_id'].to_i
+        book_id = e['book_id'].to_i
+
+        person = @people.find { |item| item.id == person_id }
+        book = @books.find { |item| item.id == book_id }
+        Rentals.new(date, person, book)
+      end
+    end
+  end
 end
+
+# rubocop:enable Metrics/MethodLength, Metrics/ClassLength, Lint/NestedMethodDefinition
+#
