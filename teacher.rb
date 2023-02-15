@@ -13,9 +13,9 @@ class Teacher < Person
   def recieve_items
     {
       class: 'Teacher',
-        age: @age,
-        name: @name,
-        specialization: @specialization
+      age: @age,
+      name: @name,
+      specialization: @specialization
     }
   end
 end

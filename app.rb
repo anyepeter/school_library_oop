@@ -5,6 +5,8 @@ require_relative 'teacher'
 require_relative 'rentals'
 require 'json'
 
+# rubocop:disable Metrics/MethodLength, Metrics/ClassLength, Lint/NestedMethodDefinition
+
 class App
   def initialize
     @books = []
@@ -159,14 +161,13 @@ class App
     puts
   end
 
-
   def save_books
-    arr=[]
+    arr = []
     @books.each do |element|
       arr.push(element.recieve_items)
     end
     File.write('./save_data/books.json', JSON.generate(arr))
-  end 
+  end
 
   def save_person
     arr = []
@@ -184,9 +185,8 @@ class App
     File.write('./save_data/rentals.json', JSON.generate(arr))
   end
 
-  def load_books  
+  def load_books
     JSON.parse(File.read('./save_data/books.json')).map do |books|
-      id = books['id'].to_i
       title = books['title']
       author = books['author']
       book = Book.new(title, author)
@@ -194,10 +194,8 @@ class App
     end
   end
 
-   def load_people
-
+  def load_people
     JSON.parse(File.read('./save_data/people.json')).map do |e|
-      id = e['id'].to_i
       people_class = e['class']
       name = e['name']
       age = e['age']
@@ -210,22 +208,21 @@ class App
         person = Teacher.new(age, name, specialization)
       end
       @people.push(person)
-   end
-
-   def load_rentals
-    return unless File.exist?('./save_data/rentals.json')
-
-    JSON.parse(File.read('./save_data/rentals.json')).map do |e|
-      date = e['date']
-      person_id = e['person_id'].to_i
-      book_id = e['book_id'].to_i
-
-      person = @people.find { |item| item.id == person_id }
-      book = @books.find { |item| item.id == book_id }
-
-      rental = Rentals.new(date, person, book)
-      @rentals.push(rental)
     end
-   end
+
+    def load_rentals
+      JSON.parse(File.read('./save_data/rentals.json')).map do |e|
+        date = e['date']
+        person_id = e['person_id'].to_i
+        book_id = e['book_id'].to_i
+
+        person = @people.find { |item| item.id == person_id }
+        book = @books.find { |item| item.id == book_id }
+        Rentals.new(date, person, book)
+      end
+    end
   end
 end
+
+# rubocop:enable Metrics/MethodLength, Metrics/ClassLength, Lint/NestedMethodDefinition
+#

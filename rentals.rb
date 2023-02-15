@@ -12,7 +12,6 @@ class Rentals
 
     @book = book
     # book.rentals << self unless book
-
   end
 
   def recieve_items
