@@ -7,8 +7,8 @@ require 'json'
 
 class App
   def initialize
-    @books = load_books || [] 
-    @people = load_people || []
+    @books = []
+    @people = []
     @rentals = []
     @classroom = []
   end
@@ -133,9 +133,9 @@ class App
 
   def list_rentals
     puts 'ID of person:'
-    pr_id = gets.chomp.to_i
+    id = gets.chomp.to_i
     @rentals.each do |rent|
-      if rent.person.id == pr_id
+      if rent.person&.id == id
         puts "Date:#{rent.date}, Book #{rent.book.title} by #{rent.book.author} borrowed by #{rent.person.name}"
       end
     end
@@ -189,11 +189,13 @@ class App
       id = books['id'].to_i
       title = books['title']
       author = books['author']
-      Book.new(title, author)
+      book = Book.new(title, author)
+      @books.push(book)
     end
   end
 
    def load_people
+
     JSON.parse(File.read('./save_data/people.json')).map do |e|
       id = e['id'].to_i
       people_class = e['class']
@@ -202,11 +204,28 @@ class App
       if people_class == 'student'
         classroom = e['classroom']
         parent_permission = e['parent_permission']
-        Student.new(classroom, parent_permission)
+        person = Student.new(classroom, parent_permission)
       else
         specialization = e['specialization']
-        Teacher.new(age, name, specialization)
+        person = Teacher.new(age, name, specialization)
       end
+      @people.push(person)
+   end
+
+   def load_rentals
+    return unless File.exist?('./save_data/rentals.json')
+
+    JSON.parse(File.read('./save_data/rentals.json')).map do |e|
+      date = e['date']
+      person_id = e['person_id'].to_i
+      book_id = e['book_id'].to_i
+
+      person = @people.find { |item| item.id == person_id }
+      book = @books.find { |item| item.id == book_id }
+
+      rental = Rentals.new(date, person, book)
+      @rentals.push(rental)
+    end
    end
   end
- end
+end

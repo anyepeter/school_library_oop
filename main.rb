@@ -5,6 +5,9 @@ class Main
     app = App.new
     puts 'Welcome to School Library App!'
     option = nil
+    app.load_books
+    app.load_people
+    app.load_rentals
     while option != '7'
       puts 'Please choose an option by entering a number:'
       puts '1 - List all books'
@@ -16,12 +19,10 @@ class Main
       puts '7 - Exit'
       option = gets.chomp
       app.functions(option)
-      app.load_books
-      app.load_people
-      app.save_books
-      app.save_person
-      app.save_rentals
     end
+    app.save_books
+    app.save_person
+    app.save_rentals
     puts 'Thank you for using this app!'
   end
 
