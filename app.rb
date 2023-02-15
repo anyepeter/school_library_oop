@@ -8,7 +8,7 @@ require 'json'
 class App
   def initialize
     @books = load_books || [] 
-    @people = []
+    @people = load_people || []
     @rentals = []
     @classroom = []
   end
@@ -159,6 +159,7 @@ class App
     puts
   end
 
+
   def save_books
     arr=[]
     @books.each do |element|
@@ -183,13 +184,29 @@ class App
     File.write('./save_data/rentals.json', JSON.generate(arr))
   end
 
-
   def load_books  
     JSON.parse(File.read('./save_data/books.json')).map do |books|
-      id = books['id']
+      id = books['id'].to_i
       title = books['title']
       author = books['author']
       Book.new(title, author)
     end
   end
-end
+
+   def load_people
+    JSON.parse(File.read('./save_data/people.json')).map do |e|
+      id = e['id'].to_i
+      people_class = e['class']
+      name = e['name']
+      age = e['age']
+      if people_class == 'student'
+        classroom = e['classroom']
+        parent_permission = e['parent_permission']
+        Student.new(classroom, parent_permission)
+      else
+        specialization = e['specialization']
+        Teacher.new(age, name, specialization)
+      end
+   end
+  end
+ end
